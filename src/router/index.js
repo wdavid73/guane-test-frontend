@@ -1,17 +1,23 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
+import Details from "../views/Details.vue"
 
-Vue.use(VueRouter)
-const routes = [];
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/details/:id',
+    name: 'Details',
+    component: Details
+  },
+]
 
-const router = new VueRouter({
-    routes,
-    scrollBehavior(){
-        return {
-            x : 0,
-            y : 0,
-        }
-    }
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
 })
 
-export default router;
+export default router
