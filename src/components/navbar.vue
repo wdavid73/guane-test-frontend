@@ -16,7 +16,7 @@
         >
           <a
             class="text-white no-underline hover:text-white hover:no-underline"
-            href="#"
+            href="/"
           >
             <img
               src="../assets/rick_and_morty.jpg"
@@ -27,37 +27,6 @@
               ><i class="em em-grinning"></i> Rick and Morty Api</span
             >
           </a>
-        </div>
-        <div
-          class="
-            flex
-            w-full
-            pt-2
-            content-center
-            justify-between
-            md:w-1/2
-            md:justify-end
-          "
-        >
-          <ul
-            class="
-              list-reset
-              flex
-              justify-between
-              flex-1
-              md:flex-none
-              items-center
-            "
-          >
-            <li class="mr-3">
-              <a
-                class="inline-block py-2 px-4 text-white no-underline"
-                href="/"
-              >
-                Home
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
