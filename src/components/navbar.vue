@@ -14,19 +14,20 @@
             font-extrabold
           "
         >
-          <a
+          <router-link
             class="text-white no-underline hover:text-white hover:no-underline"
-            href="/"
+            to="/"
           >
             <img
               src="../assets/rick_and_morty.jpg"
               class="inline object-cover w-16 h-16 mr-2 rounded-full"
               alt=""
             />
-            <span class="text-2xl pl-2"
-              ><i class="em em-grinning"></i> Rick and Morty Api</span
-            >
-          </a>
+            <span class="text-2xl pl-2">
+              <i class="em em-grinning"></i>
+              Rick and Morty Api
+            </span>
+          </router-link>
         </div>
       </div>
     </nav>

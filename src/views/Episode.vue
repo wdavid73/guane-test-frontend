@@ -90,8 +90,7 @@
                         v-for="(character, index) in episode.characters"
                         :key="index"
                       >
-                        <a
-                          :href="`/details/${character.split('/').pop()}`"
+                        <div
                           class="
                             bg-green-500
                             hover:bg-green-700
@@ -103,8 +102,15 @@
                             w-7/12
                           "
                         >
-                          Character {{ character.split("/").pop() }}
-                        </a>
+                          <router-link
+                            :to="{
+                              name: 'Details',
+                              params: { id: character.split('/').pop() },
+                            }"
+                          >
+                            <p>Character {{ character.split("/").pop() }}</p>
+                          </router-link>
+                        </div>
                       </div>
                     </div>
                   </div>

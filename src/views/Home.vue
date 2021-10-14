@@ -105,8 +105,7 @@
                   </div>
                 </div>
 
-                <a
-                  :href="`details/${character.id}`"
+                <router-link
                   class="
                     bg-green-500
                     hover:bg-green-700
@@ -117,13 +116,56 @@
                     rounded-full
                     mt-2
                   "
+                  :to="{ name: 'Details', params: { id: character.id } }"
                 >
-                  Details
-                </a>
+                  <p>Details</p>
+                </router-link>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="flex justify-center space-x-1 mb-12">
+        <button
+          v-on:click="getCharacters(prevPage)"
+          class="
+            flex
+            items-center
+            px-4
+            py-2
+            text-gray-500
+            bg-gray-300
+            rounded-md
+            hover:bg-green-400
+            hover:text-white
+          "
+          v-bind:class="{
+            'cursor-not-allowed': prevPage == null,
+            'opacity-50': prevPage == null,
+          }"
+        >
+          Previous
+        </button>
+
+        <button
+          v-on:click="getCharacters(nextPage)"
+          class="
+            px-4
+            py-2
+            font-bold
+            text-gray-500
+            bg-gray-300
+            rounded-md
+            hover:bg-green-400
+            hover:text-white
+          "
+          v-bind:class="{
+            'cursor-not-allowed': nextPage == null,
+            'opacity-50': nextPage == null,
+          }"
+        >
+          Next
+        </button>
       </div>
     </div>
   </div>
@@ -142,18 +184,32 @@ export default {
   data() {
     return {
       characters: [],
+      nextPage: "",
+      prevPage: "",
     };
   },
   methods: {
-    getCharacters() {
-      axios.get(endpoints.characters).then(({ data }) => {
-        this.characters = data.results;
-      });
+    async getCharacters(url = "") {
+      if (url != null) {
+        if (url === "") {
+          await axios.get(endpoints.characters).then(({ data }) => {
+            this.characters = data.results;
+            this.nextPage = data.info.next;
+            this.prevPage = data.info.prev;
+          });
+        } else {
+          await axios.get(url).then(({ data }) => {
+            this.characters = data.results;
+            this.nextPage = data.info.next;
+            this.prevPage = data.info.prev;
+          });
+        }
+      }
     },
   },
 
-  mounted() {
-    this.getCharacters();
+  async beforeMount() {
+    await this.getCharacters();
   },
 };
 </script>
